@@ -1,7 +1,7 @@
 # Price Mapping Engine – Federal Procurement Data
 
 ## 📊 Overview
-This project implements an end-to-end data pipeline to process unstructured federal procurement PDFs and transform them into an analysis-ready dataset.
+This project builds an end-to-end data pipeline to process unstructured federal procurement PDFs and transform them into an analysis-ready dataset.
 
 The system extracts:
 - Vendor name
@@ -9,42 +9,43 @@ The system extracts:
 - Service category
 - Contract date
 
-and generates a **price mapping engine** to analyze vendor performance across contracts.
+and generates a **price mapping engine** for vendor-level analysis.
 
 ---
 
 ## 🎯 Problem Statement
-Federal procurement data is often published as unstructured PDF documents, making it difficult to extract and analyze vendor pricing and contract information.
+Federal procurement data is published as unstructured PDFs, making it difficult to extract and analyze vendor pricing information.
 
 This project addresses:
 - Unstructured data ingestion
 - Data extraction and transformation
-- Vendor-level price analysis
+- Vendor-level price intelligence
 
 ---
 
 ## 🏗️ Architecture (Medallion Model)
 
-### 🟤 Bronze Layer (Raw Ingestion)
-- Ingested multiple DoD contract PDFs
-- Converted PDF → text using OCR (Tesseract)
+### 🟤 Bronze Layer
+- OCR-based ingestion (PDF → text)
+- Multi-document batch processing
 
-### ⚪ Silver Layer (Transformation)
-- Extracted structured data using regex
-- Cleaned OCR noise and normalized vendor names
-- Removed duplicates
+### ⚪ Silver Layer
+- Regex-based structured extraction
+- Data cleaning and normalization
+- Vendor name standardization
 
-### 🟡 Gold Layer (Analytics)
+### 🟡 Gold Layer
 - Vendor-level price mapping
-- Contract trend analysis over time
-- Analysis-ready dataset
+- Time-based trend analysis
+- High-value contract detection
+- Price type classification (unit vs total)
 
 ---
 
 ## ⚙️ Tech Stack
 - Python (pandas, pytesseract, pdf2image)
-- SQLite (data storage)
-- Regex (pattern extraction)
+- SQLite
+- Regex
 
 ---
 
@@ -55,10 +56,14 @@ This project addresses:
 - Ferrovial Construccion PR LLC → $1.08B
 - General Dynamics Land Systems → $716M
 
+### 🔹 Price Type Distribution
+- Total Contract Value → 7
+- Price per Unit → 2
+
 ### 🔹 Insights
 - Identifies top-performing vendors
-- Tracks contract values across time
-- Enables competitive analysis
+- Tracks contract value trends over time
+- Enables competitive pricing analysis
 
 ---
 
@@ -78,6 +83,8 @@ This project addresses:
 - service_category
 - contract_value
 - contract_date
+- high_value_flag
+- price_type
 
 ---
 
