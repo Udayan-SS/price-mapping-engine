@@ -87,6 +87,40 @@ This project addresses:
 - price_type
 
 ---
+## 🤖 AI-Native Extraction (Updated)
+
+The extraction layer has been redesigned from a rule-based (regex) approach to an AI-native, layout-agnostic system.
+
+Instead of relying on fixed patterns, the system interprets context to extract:
+- Vendor of record  
+- Payment amount  
+- Service/product  
+- Action Forms relevance  
+- Proxy vendor relationships  
+
+This enables the pipeline to handle highly unstructured documents across thousands of varying layouts without manual rule updates.
+
+## 🔍 Proxy Vendor Detection
+
+In real-world datasets, payments are often routed through intermediaries (billing partners), while the actual product differs from the vendor of record.
+
+This system identifies such cases by inferring functional equivalence from context.
+
+Example:
+- Vendor: Global Tech Solutions  
+- Description: Digital workflow / form processing  
+- Inference: Equivalent to Action Forms  
+
+This allows the engine to detect “money through the noise” even when the product is not explicitly mentioned.
+
+## 🧠 LLM Design Approach
+
+The extraction logic is designed to be model-agnostic and can integrate with:
+- OpenAI GPT  
+- Google Gemini  
+- Local LLMs  
+
+The current implementation demonstrates LLM behavior using a simulated layer, focusing on reasoning and generalization rather than hardcoded rules.
 
 ## 🚀 How to Run
 
